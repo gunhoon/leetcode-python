@@ -3,6 +3,7 @@ import unittest
 if __name__ != '__main__':
     from leetcode.add_two_numbers import ListNode
     from leetcode.add_two_numbers import Solution
+    from leetcode.add_two_numbers import FirstSolution
 
 
 class TestSolution(unittest.TestCase):
@@ -35,6 +36,37 @@ class TestSolution(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
+
+class TestFirstSolution(unittest.TestCase):
+    def test_add_two_numbers(self):
+        """
+        Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+        Output: 7 -> 0 -> 8
+        Explanation: 342 + 465 = 807.
+        """
+        l1 = ListNode(3, None)
+        l1 = ListNode(4, l1)
+        l1 = ListNode(2, l1)
+
+        l2 = ListNode(4, None)
+        l2 = ListNode(6, l2)
+        l2 = ListNode(5, l2)
+
+        expected = ListNode(8, None)
+        expected = ListNode(0, expected)
+        expected = ListNode(7, expected)
+
+        sol = FirstSolution()
+        result = sol.addTwoNumbers(l1, l2)
+
+        # compare
+        while expected is not None:
+            self.assertEqual(result.val, expected.val)
+            result = result.next
+            expected = expected.next
+
+        self.assertEqual(result, expected)
+
     def test_convert_list_to_number(self):
         """
         Input: (2 -> 4 -> 3)
@@ -54,7 +86,7 @@ class TestSolution(unittest.TestCase):
         expected2 = 405
         expected3 = 0
 
-        sol = Solution()
+        sol = FirstSolution()
 
         result = sol.convertListToNumber(l1)
         self.assertEqual(result, expected1)
@@ -85,7 +117,7 @@ class TestSolution(unittest.TestCase):
 
         expected3 = ListNode(0, None)
 
-        sol = Solution()
+        sol = FirstSolution()
 
         # input 1
         result = sol.convertNumberToList(input1)
@@ -125,5 +157,6 @@ if __name__ == '__main__':
     sys.path.append(os.path.join(os.path.dirname(__file__), os.pardir))
     from leetcode.add_two_numbers import ListNode
     from leetcode.add_two_numbers import Solution
+    from leetcode.add_two_numbers import FirstSolution
 
     unittest.main()
